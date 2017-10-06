@@ -18,7 +18,7 @@ namespace StreamingDatasetsDemo {
     public const string PowerBiServiceRootUrl = "https://api.powerbi.com/v1.0/myorg/";
     public const string restUrlDatasets = PowerBiServiceRootUrl + "datasets";
 
-    public const string ClientID = "1a35cc9d-9f0f-455f-853b-7996fee36fc3";
+    public const string ClientID = "[YOUR_CLIENT_ID]";
     public const string RedirectUri = "https://localhost/app1234";
 
     #region "Authentication Details"
@@ -31,16 +31,16 @@ namespace StreamingDatasetsDemo {
       var authenticationContext = new AuthenticationContext(AzureAuthorizationEndpoint);
 
       //// use authentication context to trigger user sign-in and return access token 
-      //var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
-      //                                                         ClientID,
-      //                                                         new Uri(RedirectUri),
-      //                                                         new PlatformParameters(PromptBehavior.Auto)).Result;
-
-      // use authentication context to trigger user sign-in and return access token 
-      UserPasswordCredential creds = new UserPasswordCredential("Student@cpt0926.onMicrosoft.com", "Pa$$word!");
       var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
                                                                ClientID,
-                                                               creds).Result;
+                                                               new Uri(RedirectUri),
+                                                               new PlatformParameters(PromptBehavior.Auto)).Result;
+
+      // use authentication context to trigger user sign-in and return access token 
+      //UserPasswordCredential creds = new UserPasswordCredential("MyAccount@MyDomain.onMicrosoft.com", "MyPassword");
+      //var userAuthnResult = authenticationContext.AcquireTokenAsync(PowerBiServiceResourceUri,
+      //                                                         ClientID,
+      //                                                         creds).Result;
 
 
       // cache access token in AccessToken field
